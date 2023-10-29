@@ -26,13 +26,14 @@ public class Main {
 
         List<Ticket> tiquets = new ArrayList<>();
         tiquets.add(t);
+        MongoController controller = new MongoController(db);
 
 
-        User u = new User(123, "a", "b", tiquets);
-
+        //User u = new User(123, "a", "b", tiquets);
+         User u = null;
         MongoCollection<Document> tickets = db.getCollection("Tickets");
         MongoCollection<Document> usuarios = db.getCollection("Users");
-        usuarios.insertOne(u.toDocument());
+        usuarios.insertOne(controller.toDocument(u));
 
 
         mongoDBConnection.close();

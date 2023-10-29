@@ -17,7 +17,19 @@ public class MongoController {
                 .append("tickets", e.getTickets());
 
     }
-    public static Document toDocument(){
-
+    public static Document toDocument(User u){
+        if(u.isAdmin) {
+            return new Document()
+                    .append("id", u.getId())
+                    .append("username", u.getUsername())
+                    .append("password", u.getPassword())
+                    .append("events", u.getEvents());
+        }else{
+            return new Document()
+                    .append("id", u.getId())
+                    .append("username", u.getUsername())
+                    .append("password", u.getPassword())
+                    .append("tickets", u.getTickets());
+        }
     }
 }
