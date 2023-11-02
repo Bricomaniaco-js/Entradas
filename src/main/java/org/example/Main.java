@@ -28,11 +28,15 @@ public class Main {
         tiquets.add(t);
 
 
-        User u = new User(123, "a", "b", tiquets);
+        Event e = new Event(
+                1,
+                "coso",
+                "coso",
+                tiquets
+        );
 
-        MongoCollection<Document> tickets = db.getCollection("Tickets");
-        MongoCollection<Document> usuarios = db.getCollection("Users");
-        usuarios.insertOne(u.toDocument());
+        MongoCollection eventos = db.getCollection("Events");
+        eventos.insertOne(MongoController.toDocument(e));
 
 
         mongoDBConnection.close();

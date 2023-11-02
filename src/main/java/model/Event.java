@@ -4,7 +4,7 @@ import org.bson.Document;
 
 import java.util.List;
 
-public class Event implements bdd.MongoInterface{
+public class Event{
     int id;
     String name;
     String description;
@@ -49,12 +49,5 @@ public class Event implements bdd.MongoInterface{
         this.tickets = tickets;
     }
 
-    @Override
-    public Document toDocument() {
-        return new Document()
-                .append("id", this.id)
-                .append("name", this.name)
-                .append("description", this.description)
-                .append("tickets", this.getTickets());
-    }
+
 }
