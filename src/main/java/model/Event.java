@@ -1,11 +1,9 @@
 package model;
 
-import org.bson.Document;
-
 import java.util.List;
 
 public class Event{
-    int id;
+    long id;
     String name;
     String description;
     List<Ticket> tickets;
@@ -17,11 +15,11 @@ public class Event{
         this.tickets = tickets;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

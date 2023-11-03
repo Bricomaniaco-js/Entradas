@@ -1,7 +1,5 @@
 package model;
 
-import org.bson.Document;
-
 public class Account{
     long id;
     String username;

@@ -2,10 +2,16 @@ package model;
 
 import org.bson.Document;
 
-public class Ticket{
+public class Ticket {
     long id;
 
     boolean used;
+
+
+    User user;
+
+    Event event;
+
 
     public Ticket(long id, boolean used, User user, Event event) {
         this.id = id;
@@ -30,11 +36,6 @@ public class Ticket{
         this.event = event;
     }
 
-    User user;
-
-    Event event;
-
-
 
     public boolean isUsed() {
         return used;
@@ -56,8 +57,6 @@ public class Ticket{
         this.id = id;
         this.used = false;
     }
-
-
 
 
 }
