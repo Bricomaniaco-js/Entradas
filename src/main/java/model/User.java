@@ -2,10 +2,12 @@ package model;
 
 import org.bson.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class User{
+
 
     long id;
     String username;
@@ -58,32 +60,38 @@ public class User{
         return events;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", tickets=" + tickets +
+                ", isAdmin=" + isAdmin +
+                ", events=" + events +
+                '}';
+    }
 
-
-
-    public User(long id, String username, String password, List<Event> events, boolean isAdmin) {
-        if(isAdmin){
-            this.id = id;
-            this.username = username;
-            this.password = password;
-            this.events = events;
-        }else{
-            this.id = id;
-            this.username = username;
-            this.password = password;
-            this.tickets = null;
-        }
+    public User() {
+            this.id = Math.round(Math.random());
+            this.username = "username";
+            this.password = "password";
+            this.events = new ArrayList<Event>();
+            this.tickets = new ArrayList<Ticket>();
+            this. isAdmin = false;
 
 
     }
 
-    public User(long id, String username, String password, List<Ticket> tickets) {
-        isAdmin = false;
+
+    public User(long id, String username, String password, List<Ticket> tickets, List<Event> events, boolean isAdmin){
         this.id = id;
         this.username = username;
         this.password = password;
+        this.events = events;
         this.tickets = tickets;
-
+        this.isAdmin = isAdmin;
     }
+
 
 }
