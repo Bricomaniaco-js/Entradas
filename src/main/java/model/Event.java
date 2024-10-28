@@ -2,6 +2,7 @@ package model;
 
 import org.bson.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event implements bdd.MongoInterface{
@@ -51,10 +52,20 @@ public class Event implements bdd.MongoInterface{
 
     @Override
     public Document toDocument() {
+        ArrayList<Document> docTickets = new ArrayList<>();
+        for(Ticket t : this.getTickets()){
+            docTickets.add(t.toDocument());
+        }
         return new Document()
                 .append("id", this.id)
                 .append("name", this.name)
                 .append("description", this.description)
-                .append("tickets", this.getTickets());
+                .append("tickets", docTickets);
+    }
+
+    @Override
+    public Event toObject(Document d) {
+
+        return null;
     }
 }

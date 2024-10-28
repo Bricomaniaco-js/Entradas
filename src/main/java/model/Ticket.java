@@ -22,4 +22,11 @@ public class Ticket implements bdd.MongoInterface{
         return new Document()
                 .append("id", this.id);
     }
+
+    @Override
+    public Ticket toObject(Document d) {
+        return null;
+    }
+
+
 }

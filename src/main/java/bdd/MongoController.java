@@ -14,39 +14,7 @@ public class MongoController {
     public MongoController( MongoDatabase db){
         this.db = db;
     }
-    public static Document toDocument(Event e){
-        return new Document()
-                .append("id", e.getId())
-                .append("name", e.getName())
-                .append("description", e.getDescription())
-                .append("tickets", e.getTickets());
-
-    }
-    public static Document toDocument(User u){
-        if(u.isAdmin) {
-            Document d = new Document()
-                    .append("id", u.getId())
-                    .append("isAdmin", "true")
-                    .append("username", u.getUsername())
-                    .append("password", u.getPassword())
-                    .append("Events", u.getEvents());
-            return d;
-
-        }else{
-            return new Document()
-                    .append("id", u.getId())
-                    .append("isAdmin", "false")
-                    .append("username", u.getUsername())
-                    .append("password", u.getPassword())
-                    .append("tickets", u.getTickets());
-        }
-    }
-    public static Document toDocument(Ticket t){
-        return new Document()
-                .append("id", t.getId());
-
-    }
-    public static ArrayList<Ticket> retrieveUserTickets(String username, String password){
+    public ArrayList<Ticket> retrieveUserTickets(String username, String password){
         MongoCollection<Document> users = db.getCollection("Users");
         Document foundUser = null;
         foundUser = users.find(new Document()
@@ -62,11 +30,11 @@ public class MongoController {
         return tickets;
     }
     
-    public static Ticket toTicket(Document d){
+    public Ticket toTicket(Document d){
         return new Ticket(d.getInteger("id"));
     }
 
-    public static ArrayList<Event> retrieveUserEvents(String username, String password){
+    public ArrayList<Event> retrieveUserEvents(String username, String password){
         MongoCollection<Document> users = db.getCollection("Users");
         Document foundUser = null;
         foundUser = users.find(new Document()
@@ -82,7 +50,7 @@ public class MongoController {
         return events;
     }
 
-    public static Event toEvent(Document d){
+    public Event toEvent(Document d){
         ArrayList<Ticket> tickets = retrieveEventTickets(d.getInteger("id"));
         return new Event(
                 d.getInteger("id"),
@@ -91,7 +59,7 @@ public class MongoController {
                 tickets);
     }
 
-    private static ArrayList<Ticket> retrieveEventTickets(Integer id) {
+    private ArrayList<Ticket> retrieveEventTickets(Integer id) {
         MongoCollection<Document> Events = db.getCollection("Events");
         Document foundEvent = null;
         foundEvent = Events.find(new Document()
@@ -106,7 +74,7 @@ public class MongoController {
         return tickets;
     }
 
-    public static User getUser(String username, String password){
+    public User getUser(String username, String password){
         if(userExists(username)) {
             MongoCollection<Document> users = db.getCollection("Users");
             Document foundUser = null;
@@ -125,22 +93,49 @@ public class MongoController {
                     foundUser.getString("password"),
                     tickets,
                     events,
-                    foundUser.getBoolean("isAdmin"));
+                    foundUser.getBoolean("isAdmin")==true);
         }
         return null;
     }
-    public static boolean listIsEmpty(List l){
+    public boolean listIsEmpty(List l){
         if(l == null){
             return true;
         }
         return l.isEmpty();
     }
-    public static boolean userExists (String username){
+    public boolean userExists (String username){
         MongoCollection<Document> users = db.getCollection("Users");
         Document foundUser = null;
         foundUser = users.find(new Document()
                 .append("username", username)
         ).first();
         return foundUser != null;
+    }
+    public boolean addUserToDatabase(User u){
+        //todo: verificar que existen eventos y entradas
+        if(!userExists(u.getUsername())){
+            MongoCollection<Document> users = db.getCollection("Users");
+            users.insertOne(u.toDocument());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean createNewUser(String username, String password, Boolean isAdmin){
+        if(!userExists(username)) {
+            User u = new User(username, password);
+            u.setAdmin(isAdmin);
+            addUserToDatabase(u);
+            return true;
+        }
+        return false;
+    }
+    public boolean addEventsToUser(){
+        //TODO
+        return false;
+    }
+    public boolean addTicketToUser(){
+        //TODO
+        return false;
     }
 }

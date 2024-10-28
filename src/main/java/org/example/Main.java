@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Main {
     private static MongoController controller;
+    private static UserManager UM;
     private static User currentUser;
 
     public static void main(String[] args) {
@@ -29,27 +30,37 @@ public class Main {
         System.out.println("Conexión a la base de datos establecida: " + db.getName());
         controller = new MongoController(db);
 
-        currentUser = null;
-        User u = controller.getUser("username", "password");
-        System.out.println(u.toString());
-        UserManager userManager = new UserManager(currentUser, controller);
-/*
+        currentUser = new User("NULL", "NULL");
+
+        UM = new UserManager(currentUser, controller);
+        UM.login("a","b");
+        System.out.println(currentUser.toString());
+
+        /*
         Ticket t = new Ticket(123);
 
+
         List<Ticket> tiquets = new ArrayList<>();
+        List<Event> eventos = new ArrayList<>();
         tiquets.add(t);
-        MongoController controller = new MongoController(db);
 
+        Event e = new Event(666, "evento1", "esto es el evento1.", tiquets);
+        eventos.add(e);
 
-        //User u = new User(123, "a", "b", tiquets);
-         User u = new User();
-        MongoCollection<Document> tickets = db.getCollection("Tickets");
+        List<Ticket> tiquets1 = new ArrayList<>();
+
+        User us = new User(999999999, "admin", "admin", tiquets1, eventos, true);
+        //User u = new User();
         MongoCollection<Document> usuarios = db.getCollection("Users");
-        usuarios.insertOne(controller.toDocument(u));
-
+        usuarios.insertOne(us.toDocument());
 */
+
+
         mongoDBConnection.close();
 
+    }
+    public static void setCurrentUser(User u){
+        currentUser = u;
     }
 
 
