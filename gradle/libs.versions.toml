@@ -10,8 +10,10 @@ lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
 navigationFragment = "2.8.3"
 navigationUi = "2.8.3"
-mongodbDriverSync = "4.11.0"
+mongodbDriverSync = "5.2.0"
 slf4jLog4j12 = "2.0.9"
+multidex = "2.0.1"
+desugarJdkLibs = "1.1.5"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -26,6 +28,8 @@ navigation-fragment = { group = "androidx.navigation", name = "navigation-fragme
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 mongodb-driver-sync = { module = "org.mongodb:mongodb-driver-sync", version.ref = "mongodbDriverSync" }
 slf4j-log4j12 = { module = "org.slf4j:slf4j-log4j12", version.ref = "slf4jLog4j12" }
+multidex = {module = "androidx.multidex:multidex", version.ref = "multidex"}
+desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
 
 
 [plugins]

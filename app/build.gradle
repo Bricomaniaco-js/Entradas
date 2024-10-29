@@ -5,10 +5,10 @@ plugins {
 android {
     namespace 'com.example.myapplication'
     compileSdk 34
-
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.example.myapplication"
-        minSdk 27
+        minSdk 26
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -23,11 +23,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding true
+    }
+
+    packaging {
+        resources {
+            pickFirsts+= ['META-INF/native-image/native-image.properties']
+            excludes += ['META-INF/native-image/reflect-config.json']
+        }
     }
 }
 
@@ -43,7 +50,10 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation libs.mongodb.driver.sync
+    implementation libs.mongodb.driver.sync/*{
+        exclude group: 'org.mongodb', module: 'bson-record-codec'
+    }*/
     implementation libs.slf4j.log4j12
-
+    implementation libs.multidex
+    coreLibraryDesugaring libs.desugar.jdk.libs
 }
