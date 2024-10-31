@@ -1,9 +1,8 @@
-package UserManager;
+package com.example.myapplication.UserManager;
 
 import com.example.myapplication.Main;
-
-import bdd.MongoController;
-import model.User;
+import com.example.myapplication.bdd.MongoController;
+import com.example.myapplication.model.User;
 
 public class UserManager {
     User user;

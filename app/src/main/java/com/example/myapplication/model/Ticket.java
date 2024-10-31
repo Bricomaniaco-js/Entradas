@@ -1,8 +1,10 @@
-package model;
+package com.example.myapplication.model;
+
+import com.example.myapplication.bdd.MongoInterface;
 
 import org.bson.Document;
 
-public class Ticket implements bdd.MongoInterface{
+public class Ticket implements MongoInterface {
     long id;
 
     public long getId() {

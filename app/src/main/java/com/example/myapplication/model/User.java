@@ -1,12 +1,11 @@
-package model;
+package com.example.myapplication.model;
 
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import bdd.MongoInterface;
+import com.example.myapplication.bdd.MongoInterface;
 
 public class User implements MongoInterface {
 

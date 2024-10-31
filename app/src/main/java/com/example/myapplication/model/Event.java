@@ -1,11 +1,13 @@
-package model;
+package com.example.myapplication.model;
+
+import com.example.myapplication.bdd.MongoInterface;
 
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event implements bdd.MongoInterface{
+public class Event implements MongoInterface {
     int id;
     String name;
     String description;

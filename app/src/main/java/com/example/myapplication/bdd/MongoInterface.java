@@ -1,4 +1,4 @@
-package bdd;
+package com.example.myapplication.bdd;
 
 import org.bson.Document;
 

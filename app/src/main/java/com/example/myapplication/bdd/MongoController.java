@@ -1,13 +1,15 @@
-package bdd;
+package com.example.myapplication.bdd;
 
+import com.example.myapplication.model.Event;
+import com.example.myapplication.model.Ticket;
+import com.example.myapplication.model.User;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-import model.*;
+import com.example.myapplication.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class MongoController {
     private static MongoDatabase db;

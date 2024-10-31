@@ -1,4 +1,4 @@
-package bdd;
+package com.example.myapplication.bdd;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

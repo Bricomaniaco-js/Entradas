@@ -1,9 +1,12 @@
 package com.example.myapplication;
+import com.example.myapplication.bdd.MongoController;
+import com.example.myapplication.bdd.MongoDBConnection;
+import com.example.myapplication.model.User;
 import com.mongodb.client.MongoDatabase;
 
-import UserManager.UserManager;
-import model.*;
-import bdd.*;
+import com.example.myapplication.UserManager.UserManager;
+import com.example.myapplication.model.*;
+import com.example.myapplication.bdd.*;
 
 
 public class Main {
