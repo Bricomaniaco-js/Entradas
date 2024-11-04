@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.Menu;
 
 import com.example.myapplication.R;
+import com.example.myapplication.UserManager.UserManager;
+import com.example.myapplication.bdd.MongoController;
+import com.example.myapplication.bdd.MongoDBConnection;
+import com.example.myapplication.model.User;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -17,18 +21,38 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
+import com.mongodb.client.MongoDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private static MongoController controller;
+    private static UserManager UM;
+    private static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+        String connectionString = "mongodb://localhost:27017"; // Cambia esto con tu URL de conexión
+        String databaseName = "AppEntradas"; // Cambia esto con el nombre de tu base de datos
+        currentUser = new User("NULL", "NULL");
+
+
+        super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        MongoDBConnection mongoDBConnection = new MongoDBConnection(connectionString, databaseName);
+        MongoDatabase db = mongoDBConnection.getDatabase();
+        System.out.println("Conexión a la base de datos establecida: " + db.getName());
+        controller = new MongoController(db);
+
+
+
+        UM = new UserManager(currentUser, controller);
+        UM.login("a","b");
+        System.out.println(currentUser.toString());
 
         launchLoginActivity();
 
