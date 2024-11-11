@@ -11,8 +11,10 @@
     <color name="foreground">#292929</color>
     <color name="black">#000000</color>
     <color name="dark_grey">#333333</color>
+    <color name="darker_grey">#202020</color>
     <color name="yellow">#CDB40E</color>
     <color name="light_yellow">#FFF8CC</color>
     <color name="dark_yellow">#9E8A26</color>
     <color name="offwhite">#D6D6D6</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
