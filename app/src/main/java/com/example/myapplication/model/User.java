@@ -2,12 +2,13 @@ package com.example.myapplication.model;
 
 import org.bson.Document;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.myapplication.bdd.MongoInterface;
 
-public class User implements MongoInterface {
+public class User implements MongoInterface , Serializable {
 
 
     long id;

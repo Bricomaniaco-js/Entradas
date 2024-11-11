@@ -4,20 +4,30 @@ import com.example.myapplication.bdd.MongoInterface;
 
 import org.bson.Document;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event implements MongoInterface {
+public class Event implements MongoInterface, Serializable {
     int id;
     String name;
     String description;
     List<Ticket> tickets;
+    List<String> images;
 
     public Event(int id, String name, String description, List<Ticket> tickets) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.tickets = tickets;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public int getId() {
@@ -70,4 +80,5 @@ public class Event implements MongoInterface {
 
         return null;
     }
+
 }

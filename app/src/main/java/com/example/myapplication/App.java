@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+/*
         //String connectionString = "mongodb://localhost:27017"; // Cambia esto con tu URL de conexión
         String connectionString = "mongodb://192.168.1.39:27017";
         String databaseName = "AppEntradas"; // Cambia esto con el nombre de tu base de datos
@@ -41,7 +41,7 @@ public class App extends Application {
             // Handle the case where currentUser is null
             Log.d("MSG", "USER IS NULL");
         }
-
+*/
         launchLoginActivity();
 
 

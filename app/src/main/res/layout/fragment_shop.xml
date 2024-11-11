@@ -4,20 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/Scroller"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/itemContainer"
-            android:name="com.example.myapplication.ui.activities.ShopItemFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="200sp"/>
-    </ScrollView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

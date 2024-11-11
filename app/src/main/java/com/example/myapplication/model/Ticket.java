@@ -4,7 +4,9 @@ import com.example.myapplication.bdd.MongoInterface;
 
 import org.bson.Document;
 
-public class Ticket implements MongoInterface {
+import java.io.Serializable;
+
+public class Ticket implements MongoInterface , Serializable {
     long id;
 
     public long getId() {
