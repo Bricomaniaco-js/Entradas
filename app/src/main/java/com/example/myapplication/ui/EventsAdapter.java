@@ -24,11 +24,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
     public EventsAdapter(){
         events = new ArrayList<Event>();
         ArrayList<String> images = new ArrayList<String>();
-        images.add("res/drawable/event_image_default.xml");
-        images.add("res/drawable/event_image_default.xml");
-        images.add("res/drawable/event_image_default.xml");
-        images.add("res/drawable/event_image_default.xml");
-        images.add("res/drawable/event_image_default.xml");
+        images.add("https://derpicdn.net/img/view/2022/7/1/2898577.png");
+        images.add("https://derpicdn.net/img/view/2021/4/15/2593604.jpg");
+        images.add("https://derpicdn.net/img/view/2022/5/9/2861888.jpg");
         for(int i = 0; i < 10; i++){
             Event e =new Event(123, "Evento " + i, "Descripcion 1", null);
             e.setImages(images);
