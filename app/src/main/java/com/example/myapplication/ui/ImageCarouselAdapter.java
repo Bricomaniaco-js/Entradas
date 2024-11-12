@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import com.example.myapplication.ui.actions.FetchImage;
 
 import androidx.constraintlayout.helper.widget.Carousel;
 
@@ -32,7 +33,7 @@ public class ImageCarouselAdapter implements Carousel.Adapter {
     public void populate(View view, int index) {
         handler = new Handler();
         ImageView image = (ImageView) view;
-        new FetchImage(event.getImages().get(index), image).start();;
+        new FetchImage(event.getImages().get(index), image, handler).start();;
 
     }
 
@@ -41,32 +42,5 @@ public class ImageCarouselAdapter implements Carousel.Adapter {
 
     }
 
-    class FetchImage extends Thread {
-        String url;
-        Bitmap bmp;
-        ImageView image;
-        public FetchImage(String url, ImageView image){
-            this.image = image;
-            this.url = url;
-        }
 
-        @Override
-        public void run() {
-            try {
-                InputStream is = new java.net.URL(url).openStream();
-                bmp = BitmapFactory.decodeStream(is);
-            } catch (IOException e) {
-                Log.e("EventDetailedActivity", "Invalid URL: " + e.getMessage());
-                Log.e("EventDetailedActivity", url);
-                throw new RuntimeException(e);
-            }
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    image.setImageBitmap(bmp);
-                }
-            });
-        }
-
-    }
 }
