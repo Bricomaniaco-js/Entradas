@@ -10,14 +10,12 @@
 
     <ImageView
         android:id="@+id/ItemImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150sp"
+        android:layout_width="200sp"
         app:srcCompat="@drawable/event_image_default"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:minHeight="150sp"
-        android:minWidth="200sp"
         android:contentDescription="Imegen del evento" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

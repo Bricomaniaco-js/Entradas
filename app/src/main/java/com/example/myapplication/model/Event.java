@@ -22,6 +22,18 @@ public class Event implements MongoInterface, Serializable {
         this.tickets = tickets;
     }
 
+    public static Event testEvent(){
+        ArrayList<String> images = new ArrayList<String>();
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        images.add("https://derpicdn.net/img/view/2022/7/1/2898577.png");
+        images.add("https://derpicdn.net/img/view/2021/4/15/2593604.jpg");
+        images.add("https://derpicdn.net/img/view/2022/5/9/2861888.jpg");
+        tickets.add(Ticket.testTicket());
+        Event e = new Event(123, "Evento 1", "Descripcion 1", tickets);
+        e.setImages(images);
+        return e;
+
+    }
     public List<String> getImages() {
         return images;
     }

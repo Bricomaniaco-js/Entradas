@@ -9,6 +9,10 @@ import java.io.Serializable;
 public class Ticket implements MongoInterface , Serializable {
     long id;
 
+    public static Ticket testTicket() {
+        return new Ticket(42069);
+    }
+
     public long getId() {
         return id;
     }

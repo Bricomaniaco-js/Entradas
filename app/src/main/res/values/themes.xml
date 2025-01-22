@@ -84,6 +84,20 @@
 
 
     </style>
+    <style name="button_primary">
+        <item name="android:background">@drawable/button_input</item>
+        <item name="android:textColor">@color/offwhite</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">7dp</item>
+        <item name="fontFamily">@font/open_sans_bold</item>
+    </style>
+    <style name="button_secondary">
+        <item name="android:background">@drawable/button_input_small</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">7dp</item>
+        <item name="fontFamily">@font/open_sans_bold</item>
+    </style>
 
 
 
