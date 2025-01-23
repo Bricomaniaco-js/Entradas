@@ -21,8 +21,8 @@ public class TicketBuyActivity extends AppCompatActivity {
     Button cancelButton;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         event = (Event) getIntent().getSerializableExtra("event");
         setContentView(R.layout.activity_buy_ticket);
         buyButton = findViewById(R.id.button_buy);

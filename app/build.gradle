@@ -8,7 +8,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.example.myapplication"
-        minSdk 26
+        minSdk 34
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -39,7 +39,8 @@ android {
 }
 
 dependencies {
-
+    implementation libs.retrofit
+    implementation libs.gson
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout

@@ -1,6 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-<!--
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
     <style name="MyApplication" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/dark_grey</item>
@@ -33,11 +32,11 @@
 
     <style name="BottomNavigationTextAppearanceActive" parent="TextAppearance.AppCompat">
         <item name="android:textSize">15sp</item>
-        <item name="fontFamily">@font/open_sans_bold</item> &lt;!&ndash; If you want to use a custom font &ndash;&gt;
+        <item name="fontFamily">@font/open_sans_bold</item> <!-- If you want to use a custom font -->
     </style>
     <style name="BottomNavigationTextAppearanceInactive" parent="TextAppearance.AppCompat">
         <item name="android:textSize">15sp</item>
-        <item name="fontFamily">@font/open_sans_bold</item> &lt;!&ndash; If you want to use a custom font &ndash;&gt;
+        <item name="fontFamily">@font/open_sans_bold</item> <!-- If you want to use a custom font -->
     </style>
     <style name="ShopItemStyle">
         <item name="android:background">@drawable/shop_item_bg</item>
@@ -65,7 +64,7 @@
     <style name="EventTitleText">
         <item name="android:textColor">@color/yellow</item>
         <item name="android:textSize">30sp</item>
-        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:fontFamily">@font/open_sans_extrabold</item>
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center</item>
         <item name="android:textAllCaps">true</item>
@@ -90,7 +89,8 @@
         <item name="android:textColor">@color/offwhite</item>
         <item name="android:textSize">20sp</item>
         <item name="android:padding">7dp</item>
-        <item name="fontFamily">@font/open_sans_bold</item>
+        <item name="fontFamily">@font/open_sans_extrabold</item>
+        <item name="textAllCaps">true</item>
     </style>
     <style name="button_secondary">
         <item name="android:background">@drawable/button_input_small</item>
@@ -100,7 +100,5 @@
         <item name="fontFamily">@font/open_sans_bold</item>
     </style>
 
-
--->
 
 </resources>

@@ -3,28 +3,66 @@ package com.example.myapplication.model;
 import com.example.myapplication.bdd.MongoInterface;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.io.Serializable;
 
 public class Ticket implements MongoInterface , Serializable {
-    long id;
+    ObjectId id;
+    ObjectId eventId;
+    ObjectId userId;
 
-    public static Ticket testTicket() {
-        return new Ticket(42069);
+    boolean valid;
+
+    public ObjectId getEventId() {
+        return eventId;
     }
 
-    public long getId() {
+    public void setEventId(ObjectId eventId) {
+        this.eventId = eventId;
+    }
+
+    public ObjectId getUserId() {
+        return userId;
+    }
+
+    public void setUserId(ObjectId userId) {
+        this.userId = userId;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
+    public Ticket(ObjectId id, ObjectId eventId, ObjectId userId, boolean valid) {
+        this.id = id;
+        this.eventId = eventId;
+        this.userId = userId;
+        this.valid = valid;
+    }
+
+    public static Ticket testTicket() {
+        return new Ticket(new ObjectId("42069"));
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    public Ticket(long id) {
+    public Ticket(ObjectId id) {
         this.id = id;
     }
 
+    public Ticket() {
+    }
     @Override
     public Document toDocument() {
         return new Document()

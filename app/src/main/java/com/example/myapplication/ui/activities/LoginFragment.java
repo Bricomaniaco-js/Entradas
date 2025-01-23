@@ -16,12 +16,22 @@ import com.example.myapplication.R;
 public class LoginFragment extends Fragment {
     Button loginButton;
     View view;
+    EditText passwordEditText;
+    EditText emailEditText;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_login, container, false);
         loginButton = (Button) view.findViewById(R.id.loginButton);
+        passwordEditText = (EditText) view.findViewById(R.id.passwordEditText);
+        emailEditText = (EditText) view.findViewById(R.id.emailEditText);
+        passwordEditText.setText("password");
+        emailEditText.setText("username");
         loginButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 ((LoginActivity)getActivity()).loginButtonClick(getEmail(), getPassword());
@@ -32,11 +42,9 @@ public class LoginFragment extends Fragment {
     }
 
     private String getEmail() {
-        EditText emailEditText = (EditText) view.findViewById(R.id.emailEditText);
         return emailEditText.getText().toString();
     }
     private String getPassword() {
-        EditText passwordEditText = (EditText) view.findViewById(R.id.passwordEditText);
         return passwordEditText.getText().toString();
     }
 

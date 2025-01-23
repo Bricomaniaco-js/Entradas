@@ -10,7 +10,7 @@ import com.example.myapplication.bdd.*;
 
 
 public class Main {
-    private static MongoController controller;
+    private static ApiController controller;
     private static UserManager UM;
     private static User currentUser;
 
@@ -26,12 +26,9 @@ public class Main {
         // Por ejemplo:
         MongoDatabase db = mongoDBConnection.getDatabase();
         System.out.println("Conexión a la base de datos establecida: " + db.getName());
-        controller = new MongoController(db);
-
-        currentUser = new User("NULL", "NULL");
 
         UM = new UserManager(currentUser, controller);
-        UM.login("a","b");
+        //UM.login("a","b");
         System.out.println(currentUser.toString());
 
         /*
@@ -59,6 +56,9 @@ public class Main {
     }
     public static void setCurrentUser(User u){
         currentUser = u;
+    }
+    public static User getCurrentUser(){
+        return currentUser;
     }
 
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.myapplication.UserManager.UserManager;
+import com.example.myapplication.bdd.ApiController;
 import com.example.myapplication.bdd.MongoController;
 import com.example.myapplication.bdd.MongoDBConnection;
 import com.example.myapplication.model.User;
@@ -15,7 +16,12 @@ public class App extends Application {
     private static App instance;
     private UserManager userManager;
     private User currentUser;
-    private MongoController controller;
+    private ApiController controller;
+
+    public ApiController getController() {
+        return controller;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,7 +36,9 @@ public class App extends Application {
         MongoDatabase db = mongoDBConnection.getDatabase();
         System.out.println("Conexión a la base de datos establecida: " + db.getName());
         controller = new MongoController(db);
+*/
 
+        controller = new ApiController();
         instance = this;
         currentUser = new User();
         System.out.println(currentUser.toString());
@@ -41,13 +49,14 @@ public class App extends Application {
             // Handle the case where currentUser is null
             Log.d("MSG", "USER IS NULL");
         }
-*/
+
         launchLoginActivity();
 
 
     }
     public void launchLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
     public static App getInstance() {

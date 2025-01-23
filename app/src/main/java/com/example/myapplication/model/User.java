@@ -1,17 +1,17 @@
 package com.example.myapplication.model;
-
 import org.bson.Document;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 import com.example.myapplication.bdd.MongoInterface;
 
 public class User implements MongoInterface , Serializable {
 
 
-    long id;
+    ObjectId id;
     String username;
     String password;
     List<Ticket> tickets;
@@ -21,14 +21,14 @@ public class User implements MongoInterface , Serializable {
 
     List<Event> events;
 
-    public long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public User setId(ObjectId id) {
         this.id = id;
+        return this;
     }
-
     public String getUsername() {
         return username;
     }
@@ -74,16 +74,6 @@ public class User implements MongoInterface , Serializable {
                 '}';
     }
 
-    public User() {
-            this.id = Math.round(Math.random());
-            this.username = "username";
-            this.password = "password";
-            this.events = new ArrayList<Event>();
-            this.tickets = new ArrayList<Ticket>();
-            this. isAdmin = false;
-
-
-    }
 
     public boolean isAdmin() {
         return isAdmin;
@@ -93,8 +83,25 @@ public class User implements MongoInterface , Serializable {
         isAdmin = admin;
     }
 
-    public User(long id, String username, String password, List<Ticket> tickets, List<Event> events, boolean isAdmin){
+    public User(ObjectId id, String username, String password, List<Ticket> tickets, List<Event> events, boolean isAdmin){
         this.id = id;
+        this.username = username;
+        this.password = password;
+        this.events = events;
+        this.tickets = tickets;
+        this.isAdmin = isAdmin;
+    }
+
+    public User(ObjectId id, String username, String password, boolean isAdmin, List<Ticket> tickets, List<Event> events){
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.events = events;
+        this.tickets = tickets;
+        this.isAdmin = isAdmin;
+    }
+
+    public User(String username, String password, List<Ticket> tickets, List<Event> events, boolean isAdmin){
         this.username = username;
         this.password = password;
         this.events = events;
@@ -106,6 +113,9 @@ public class User implements MongoInterface , Serializable {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+    public User() {
+
     }
 
     @Override
@@ -133,7 +143,7 @@ public class User implements MongoInterface , Serializable {
     @Override
     public Object toObject(Document d) {
         User u = new User(
-                d.getLong("id"),
+                // TODO d.getLong("id"),
                 d.getString("username"),
                 d.getString("password"),
                 tickets,

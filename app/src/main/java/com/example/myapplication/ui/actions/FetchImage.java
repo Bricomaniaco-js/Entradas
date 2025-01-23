@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.myapplication.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -28,7 +30,7 @@ public class FetchImage extends Thread {
         } catch (IOException e) {
             Log.e("EventDetailedActivity", "Invalid URL: " + e.getMessage());
             Log.e("EventDetailedActivity", url);
-            throw new RuntimeException(e);
+            bmp = BitmapFactory.decodeResource(image.getResources(), R.drawable.event_image_default);
         }
         handler.post(new Runnable() {
             @Override
@@ -37,5 +39,6 @@ public class FetchImage extends Thread {
             }
         });
     }
+
 
 }

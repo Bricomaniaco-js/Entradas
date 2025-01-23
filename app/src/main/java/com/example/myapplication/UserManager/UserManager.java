@@ -1,29 +1,49 @@
 package com.example.myapplication.UserManager;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.example.myapplication.Main;
+import com.example.myapplication.bdd.ApiController;
 import com.example.myapplication.bdd.MongoController;
 import com.example.myapplication.model.User;
+import com.example.myapplication.wrappers.*;
 
 public class UserManager {
     User user;
-    MongoController controller;
-    public UserManager(User user, MongoController controller){
+    ApiController controller;
+    UserWrapper userWrapper;
+    public UserManager(User user, ApiController controller){
         this.user =user;
         this.controller = controller;
+        userWrapper = new UserWrapper();
     }
-    public boolean login(String username, String password){
-        //TODO esto creo que esta mal, llama a un metodo dentro de main para cambiar el ususario. no es seguro pero funciona
-        if(verifyUser(username, password)){
-            Main.setCurrentUser(controller.getUser(username, password));
-            return true;
-        }
-        return false;
+    public void login(String username, String password, LoginCallback callback) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        controller.getUser(username, password, new ApiController.UserCallback() {
+            @Override
+            public void onSuccess(User user) {
+                handler.post(() -> {
+                    UserManager.this.user = user;
+                    System.out.println("User logged in: " + user.toString());
+                    callback.onSuccess(user);
+                });
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                handler.post(() -> {
+                    System.out.println("Error: " + t.getMessage());
+                    callback.onFailure();
+                });
+            }
+        });
     }
-    private boolean verifyUser(String username, String password){
-        if(controller.userExists(username) && controller.getUser(username, password) == null){
-            return false;
-        }
-        return true;
+
+    public interface LoginCallback {
+        void onSuccess(User user);
+        void onFailure();
     }
 
 }
+
