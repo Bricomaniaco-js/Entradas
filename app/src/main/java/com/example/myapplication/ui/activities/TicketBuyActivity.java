@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -11,7 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.UserManager.UserManager;
 import com.example.myapplication.model.Event;
+import com.example.myapplication.model.User;
 import com.example.myapplication.ui.actions.ShopActions;
 import com.example.myapplication.ui.actions.UserActions;
 
@@ -43,6 +47,19 @@ public class TicketBuyActivity extends AppCompatActivity {
 
         TextView location = findViewById(R.id.text_location);
         location.setText(event.getLocation());
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String address = event.getLocation();
+                String uri = "geo:0,0?q=" + address;
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
 
         buyButton = findViewById(R.id.button_buy);
         cancelButton = findViewById(R.id.button_cancel);
@@ -63,8 +80,19 @@ public class TicketBuyActivity extends AppCompatActivity {
 
     }
     private void buyTicket() {
-        UserActions.buyTicket(event);
-        Toast.makeText(this, "Entrada comprada con éxito", Toast.LENGTH_SHORT).show();
-        ShopActions.navigateToDetailedView(this, event);
+        UserActions.buyTicket(event, new UserActions.UserCallback() {
+            @Override
+            public void onSuccess(User user) {
+                Toast.makeText(TicketBuyActivity.this, "Ticket Bought Successfully", Toast.LENGTH_SHORT).show();
+                ShopActions.navigateToDetailedView(TicketBuyActivity.this, event);
+            }
+
+            @Override
+            public void onFailure() {
+                Toast.makeText(TicketBuyActivity.this, "Sorry, Ticket not bought", Toast.LENGTH_SHORT).show();
+                ShopActions.navigateToDetailedView(TicketBuyActivity.this, event);
+            }
+        });
+
     }
 }

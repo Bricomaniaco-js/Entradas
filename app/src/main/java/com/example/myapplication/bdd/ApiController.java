@@ -62,6 +62,32 @@ public class ApiController{
             }
         });
     }
+
+    public void buyTicket(User user, Event event, final UserCallback callback) {
+        apiServiceManager.buyTicket(user, event, new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if (response.isSuccessful()) {
+                    UserDTO userDTO = response.body();
+                    if (userDTO == null) {
+                        callback.onFailure(new Exception("Failed to buy ticket"));
+                        return;
+                    }else {
+                        System.out.println("User with new ticket: " + response.body());
+                        callback.onSuccess(userDTO.toUser());
+                    }
+                } else {
+                    callback.onFailure(new Exception("Failed to buy ticket"));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
     public interface UserCallback {
         void onSuccess(User user);
         void onFailure(Throwable t);

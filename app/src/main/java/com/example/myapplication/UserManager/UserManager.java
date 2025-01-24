@@ -3,6 +3,7 @@ package com.example.myapplication.UserManager;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.example.myapplication.App;
 import com.example.myapplication.Main;
 import com.example.myapplication.bdd.ApiController;
 import com.example.myapplication.bdd.MongoController;
@@ -25,6 +26,7 @@ public class UserManager {
             public void onSuccess(User user) {
                 handler.post(() -> {
                     UserManager.this.user = user;
+                    App.getInstance().setCurrentUser(user);
                     System.out.println("User logged in: " + user.toString());
                     callback.onSuccess(user);
                 });

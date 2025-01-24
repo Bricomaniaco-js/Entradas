@@ -3,6 +3,8 @@ package com.example.myapplication.bdd;
 
 import retrofit2.*;
 import com.example.myapplication.dtos.*;
+import com.example.myapplication.model.Event;
+import com.example.myapplication.model.User;
 
 import java.util.List;
 
@@ -21,6 +23,11 @@ public class ApiServiceManager {
     }
     public void getEvents(Callback<List<EventDTO>> callback) {
         Call<List<EventDTO>> call = apiService.getEvents();
+        call.enqueue(callback);
+    }
+
+    public void buyTicket(User user, Event event, Callback<UserDTO> callback) {
+        Call<UserDTO> call = apiService.buyTicket(new UserEventRequest(new UserDTO(user), new EventDTO(event)));
         call.enqueue(callback);
     }
 }
