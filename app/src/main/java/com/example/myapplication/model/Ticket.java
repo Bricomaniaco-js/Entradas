@@ -1,13 +1,11 @@
 package com.example.myapplication.model;
 
-import com.example.myapplication.bdd.MongoInterface;
-
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.io.Serializable;
 
-public class Ticket implements MongoInterface , Serializable {
+public class Ticket implements Serializable {
     ObjectId id;
     ObjectId eventId;
     ObjectId userId;
@@ -63,16 +61,4 @@ public class Ticket implements MongoInterface , Serializable {
 
     public Ticket() {
     }
-    @Override
-    public Document toDocument() {
-        return new Document()
-                .append("id", this.id);
-    }
-
-    @Override
-    public Ticket toObject(Document d) {
-        return null;
-    }
-
-
 }

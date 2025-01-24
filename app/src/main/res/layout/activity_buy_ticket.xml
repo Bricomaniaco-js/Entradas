@@ -50,7 +50,8 @@
             android:id="@+id/text_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Event location"/>
+            android:text="Event location"
+            android:singleLine="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

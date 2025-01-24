@@ -14,6 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <ScrollView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -23,7 +25,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_gravity="center">
 
                 <androidx.constraintlayout.motion.widget.MotionLayout
                     android:layout_width="match_parent"
@@ -33,32 +36,47 @@
 
                     <ImageView
                         android:id="@+id/imageView0"
+                        android:src="@drawable/throbber"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
+                        android:background="@android:color/black"
+                        android:scaleType="centerCrop"
                         android:clickable="false" />
 
                     <ImageView
                         android:id="@+id/imageView1"
+                        android:src="@drawable/throbber"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
+                        android:background="@android:color/black"
+                        android:scaleType="centerCrop"
                         android:clickable="false" />
 
                     <ImageView
                         android:id="@+id/imageView2"
+                        android:src="@drawable/throbber"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
+                        android:background="@android:color/black"
+                        android:scaleType="centerCrop"
                         android:clickable="false" />
 
                     <ImageView
                         android:id="@+id/imageView3"
+                        android:src="@drawable/throbber"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
+                        android:background="@android:color/black"
+                        android:scaleType="centerCrop"
                         android:clickable="false" />
 
                     <ImageView
                         android:id="@+id/imageView4"
+                        android:src="@drawable/throbber"
                         android:layout_width="match_parent"
                         android:layout_height="200sp"
+                        android:background="@android:color/black"
+                        android:scaleType="centerCrop"
                         android:clickable="false" />
 
                     <androidx.constraintlayout.helper.widget.Carousel
@@ -83,11 +101,83 @@
                     android:text="@string/app_name" />
 
                 <TextView
-                    android:id="@+id/DescriptionText"
+                    android:id="@+id/descriptionText"
                     style="@style/EventDescriptionText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/lorem_ipsum" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linear_layout_location"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.3"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageLocation"
+                        android:src="@drawable/ic_location"/>
+                    <TextView
+                        style="@style/ItemTitleStyle"
+                        android:id="@+id/text_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Event location"
+                        android:singleLine="true"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linear_layout_date"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.4"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/image_date"
+                        android:src="@drawable/ic_date"/>
+                    <TextView
+                        style="@style/ItemTitleStyle"
+                        android:id="@+id/text_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Event date"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linear_layout_price"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.4"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/image_price"
+                        android:src="@drawable/ic_date"
+                        android:visibility="invisible"/>
+                    <TextView
+                        style="@style/ItemTitleStyle"
+                        android:id="@+id/text_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Event price"/>
+                </LinearLayout>
 
 
 
@@ -102,13 +192,15 @@
             android:background="@drawable/floating_action_button"
             android:clickable="true"
             android:src="@drawable/buy_ticket_button"
+            app:fabCustomSize="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1"
             app:layout_constraintHorizontal_bias="1"
-            android:scaleType="center"
+            android:padding="10dp"
+            android:foregroundGravity="center"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

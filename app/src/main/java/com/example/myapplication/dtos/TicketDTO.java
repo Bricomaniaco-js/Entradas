@@ -1,6 +1,8 @@
 package com.example.myapplication.dtos;
 
-import com.example.myapplication.model.*;
+
+import com.example.myapplication.model.Ticket;
+
 import org.bson.types.ObjectId;
 
 public record TicketDTO(

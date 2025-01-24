@@ -1,6 +1,7 @@
 package com.example.myapplication.dtos;
 
-import com.example.myapplication.model.*;
+import com.example.myapplication.model.User;
+
 import org.bson.types.ObjectId;
 
 import java.util.List;

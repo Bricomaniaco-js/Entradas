@@ -15,6 +15,9 @@ import com.example.myapplication.model.Event;
 import com.example.myapplication.ui.actions.ShopActions;
 import com.example.myapplication.ui.actions.UserActions;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 public class TicketBuyActivity extends AppCompatActivity {
     Event event;
     Button buyButton;
@@ -25,6 +28,22 @@ public class TicketBuyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         event = (Event) getIntent().getSerializableExtra("event");
         setContentView(R.layout.activity_buy_ticket);
+
+        TextView title = findViewById(R.id.text_title);
+        title.setText(event.getName());
+
+        TextView price = findViewById(R.id.text_price);
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator(',');
+        DecimalFormat decimalFormat = new DecimalFormat("#.00", symbols);
+        price.setText(decimalFormat.format(event.getPrice()) + "€");
+
+        TextView date = findViewById(R.id.text_date);
+        date.setText(event.getDate().toString());
+
+        TextView location = findViewById(R.id.text_location);
+        location.setText(event.getLocation());
+
         buyButton = findViewById(R.id.button_buy);
         cancelButton = findViewById(R.id.button_cancel);
         buyButton.setOnClickListener(
@@ -41,7 +60,7 @@ public class TicketBuyActivity extends AppCompatActivity {
                         ShopActions.navigateToDetailedView(v.getContext(), event);
                     }
                 });
-        ((TextView)findViewById(R.id.text_title)).setText(event.getName());
+
     }
     private void buyTicket() {
         UserActions.buyTicket(event);

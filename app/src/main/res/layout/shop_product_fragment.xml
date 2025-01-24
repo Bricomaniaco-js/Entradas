@@ -12,7 +12,7 @@
         android:id="@+id/ItemImage"
         android:layout_height="150sp"
         android:layout_width="200sp"
-        app:srcCompat="@drawable/event_image_default"
+        android:src="@drawable/throbber"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -57,18 +57,20 @@
             app:layout_constraintTop_toBottomOf="@id/ItemTitle"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            style="@style/shopItemButtonStyle"
+        <TextView
+            android:id="@+id/ItemPrice"
+            style="@style/ItemTitleStyle"
+            android:textSize="15sp"
+            android:textColor="@color/offwhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="Comprar"
-
+            android:text="price"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ItemDescription"
             app:layout_constraintHorizontal_bias="0.9"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

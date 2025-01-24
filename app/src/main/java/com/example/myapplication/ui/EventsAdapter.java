@@ -20,6 +20,8 @@ import com.example.myapplication.ui.actions.FetchImage;
 import com.example.myapplication.ui.activities.EventDetailedActivity;
 import com.example.myapplication.ui.actions.ShopActions;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +43,20 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Handler handler = new Handler();
+
         Event event = events.get(position);
         TextView title = (TextView)holder.itemView.findViewById(R.id.ItemTitle);
+
         title.setText(event.getName());
         TextView description = (TextView)holder.itemView.findViewById(R.id.ItemDescription);
         description.setText(event.getDescription());
+
+        TextView price = (TextView)holder.itemView.findViewById(R.id.ItemPrice);
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator(',');
+        DecimalFormat decimalFormat = new DecimalFormat("#.00", symbols);
+        price.setText(decimalFormat.format(event.getPrice()) + "€");
+
         ImageView image = (ImageView)holder.itemView.findViewById(R.id.ItemImage);
         new FetchImage(event.getImages().get(0), image, handler).start();
         holder.itemView.setOnClickListener(
