@@ -57,4 +57,6 @@ dependencies {
     implementation libs.slf4j.log4j12
     implementation libs.multidex
     coreLibraryDesugaring libs.desugar.jdk.libs
+    implementation libs.zxing.android.embedded
+    implementation libs.zxing.core
 }

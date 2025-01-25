@@ -57,6 +57,9 @@ public class Ticket implements Serializable {
 
     public Ticket(ObjectId id) {
         this.id = id;
+        this.eventId = new ObjectId();
+        this.userId = new ObjectId();
+        this.valid =  true;
     }
 
     public Ticket() {

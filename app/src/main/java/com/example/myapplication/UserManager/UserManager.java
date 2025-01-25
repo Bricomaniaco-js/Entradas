@@ -25,7 +25,6 @@ public class UserManager {
             @Override
             public void onSuccess(User user) {
                 handler.post(() -> {
-                    UserManager.this.user = user;
                     App.getInstance().setCurrentUser(user);
                     System.out.println("User logged in: " + user.toString());
                     callback.onSuccess(user);

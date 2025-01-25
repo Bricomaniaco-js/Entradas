@@ -16,6 +16,8 @@ multidex = "2.0.1"
 desugarJdkLibs = "1.1.5"
 retrofit = "2.9.0"
 gson = "2.9.0"
+zxing-android-embedded = "4.3.0"
+zxing-core = "3.3.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -34,6 +36,8 @@ multidex = {module = "androidx.multidex:multidex", version.ref = "multidex"}
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdkLibs" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson" }
+zxing-android-embedded = { group = "com.journeyapps", name = "zxing-android-embedded", version.ref = "zxing-android-embedded" }
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing-core" }
 
 
 [plugins]

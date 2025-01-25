@@ -1,8 +1,11 @@
 package com.example.myapplication.bdd;
 
 import com.example.myapplication.dtos.EventDTO;
+import com.example.myapplication.dtos.TicketDTO;
 import com.example.myapplication.dtos.UserDTO;
 import com.example.myapplication.dtos.UserEventRequest;
+import com.example.myapplication.dtos.UserTicketRequest;
+import com.example.myapplication.model.Ticket;
 
 import java.util.List;
 
@@ -19,4 +22,8 @@ public interface ApiService {
     Call<List<EventDTO>> getEvents();
     @POST("/api/users/user/buyTicket")
     Call<UserDTO> buyTicket(@Body UserEventRequest userEventRequest);
+    @POST("/api/users/user/validateTicket")
+    Call<TicketDTO> validateTicket(@Body UserTicketRequest userTicketRequest);
+    @GET("/api/events/getEvent")
+    Call<EventDTO> getEvent(@Query("eventId") String eventId);
 }

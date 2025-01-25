@@ -89,7 +89,7 @@ public class EventDetailedActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable, 3000);
-
+        //todo: ae vuelven a descargar las imagenes cada vez que se cambia de imagen.
         //TODO: el carrusel no funciona, carga las imagenes pero no funcionan las transiciones.
         fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(

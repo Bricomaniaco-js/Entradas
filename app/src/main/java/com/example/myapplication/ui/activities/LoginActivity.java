@@ -39,7 +39,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(User user) {
                 Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
-                navigateToHomePage();
+                if (user.isAdmin()){
+                    navigateToAdminPage();
+                } else {
+                    navigateToHomePage();
+                }
+
             }
 
             @Override
@@ -49,8 +54,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    private void navigateToHomePage(){
 
+    private void navigateToAdminPage() {
+        Intent i = new Intent(this, AdminActivity.class);
+        startActivity(i);
+    }
+
+    private void navigateToHomePage(){
         Intent i = new Intent(this, HomeActivity.class);
         startActivity(i);
     }

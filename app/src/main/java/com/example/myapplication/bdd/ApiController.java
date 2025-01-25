@@ -4,7 +4,9 @@ import android.os.Handler;
 
 import com.example.myapplication.UserManager.UserManager;
 import com.example.myapplication.dtos.EventDTO;
+import com.example.myapplication.dtos.TicketDTO;
 import com.example.myapplication.model.Event;
+import com.example.myapplication.model.Ticket;
 import com.example.myapplication.model.User;
 import com.example.myapplication.dtos.UserDTO;
 import com.example.myapplication.wrappers.UserWrapper;
@@ -86,6 +88,54 @@ public class ApiController{
                 callback.onFailure(t);
             }
         });
+    }
+
+    public void validateTicket(User user, String qrContent, ApiController.TicketCallback ticketCallback) {
+        apiServiceManager.adminValidateTicket(user, qrContent, new Callback<TicketDTO>() {
+                        @Override
+            public void onResponse(Call<TicketDTO> call, Response<TicketDTO> response) {
+                if (response.isSuccessful()) {
+                    Ticket ticket = response.body().toTicket();
+                    ticketCallback.onSuccess(ticket);
+                } else {
+                    ticketCallback.onFailure(new Exception("Failed to validate ticket"));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TicketDTO> call, Throwable t) {
+                ticketCallback.onFailure(t);
+            }
+        });
+    }
+
+    public void getEvent(String eventId, final EventCallback callback) {
+        apiServiceManager.getEvent(eventId, new Callback<EventDTO>() {
+            @Override
+            public void onResponse(Call<EventDTO> call, Response<EventDTO> response) {
+                if (response.isSuccessful()) {
+                    EventDTO eventDTO = response.body();
+                    Event event = eventDTO.toEvent();
+                    callback.onSuccess(event);
+                } else {
+                    callback.onFailure(new Exception("Failed to retrieve event"));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<EventDTO> call, Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
+    public interface EventCallback {
+        void onSuccess(Event event);
+        void onFailure(Throwable t);
+    }
+    public interface TicketCallback {
+        void onSuccess(Ticket Ticket);
+        void onFailure(Throwable t);
     }
 
     public interface UserCallback {

@@ -18,7 +18,9 @@ Morbi scelerisque viverra luctus. Cras ac leo tortor. Praesent eleifend non odio
     <string name="previous">Previous</string>
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="title_profile">perfil</string>
-    <string name="title_shop">tienda</string>
-    <string name="title_settings">ajustes</string>
+    <string name="title_profile">Mis Entradas</string>
+    <string name="title_shop">Tienda</string>
+    <string name="title_settings">Ajustes</string>
+    <string name="tickets">Tus entradas:</string>
+    <string name="view_ticket">Ver código</string>
 </resources>
