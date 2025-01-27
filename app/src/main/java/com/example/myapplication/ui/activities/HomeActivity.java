@@ -10,8 +10,15 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * Home activity that hosts the main navigation and fragments.
+ */
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
+    /**
+     * Called when the activity is first created.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +27,15 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        // Load default fragment (e.g., ProfileFragment)
         loadFragment(new ProfileFragment());
     }
 
+    /**
+     * Handles navigation item selection.
+     *
+     * @param item The selected menu item.
+     * @return true if the item selection is handled, false otherwise.
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
@@ -43,6 +55,12 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         return loadFragment(fragment);
     }
 
+    /**
+     * Loads the specified fragment into the fragment container.
+     *
+     * @param fragment The fragment to load.
+     * @return true if the fragment is loaded, false otherwise.
+     */
     private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager()

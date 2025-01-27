@@ -1,12 +1,14 @@
 package com.example.myapplication.dtos;
 
-
 import com.example.myapplication.model.Event;
 
 import org.bson.types.ObjectId;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object for Event.
+ */
 public record EventDTO(
         String id,
         String name,
@@ -20,6 +22,11 @@ public record EventDTO(
 
 
 ) {
+    /**
+     * Constructs a new EventDTO from an Event.
+     *
+     * @param e the Event
+     */
     public EventDTO(Event e){
         this(
                 e.getId() == null ? new ObjectId().toHexString() : e.getId().toHexString(),
@@ -34,6 +41,11 @@ public record EventDTO(
         );
 
     }
+    /**
+     * Converts this EventDTO to an Event.
+     *
+     * @return the Event
+     */
     public Event toEvent() {
         ObjectId _id = id == null ? new ObjectId() : new ObjectId(id);
         return new Event(_id,

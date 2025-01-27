@@ -1,11 +1,10 @@
-package com.example.myapplication.bdd;
+package com.example.myapplication.db;
 
 import com.example.myapplication.dtos.EventDTO;
 import com.example.myapplication.dtos.TicketDTO;
 import com.example.myapplication.dtos.UserDTO;
 import com.example.myapplication.dtos.UserEventRequest;
 import com.example.myapplication.dtos.UserTicketRequest;
-import com.example.myapplication.model.Ticket;
 
 import java.util.List;
 

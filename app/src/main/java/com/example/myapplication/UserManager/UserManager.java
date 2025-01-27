@@ -4,9 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.example.myapplication.App;
-import com.example.myapplication.Main;
-import com.example.myapplication.bdd.ApiController;
-import com.example.myapplication.bdd.MongoController;
+import com.example.myapplication.db.ApiController;
 import com.example.myapplication.model.User;
 import com.example.myapplication.wrappers.*;
 

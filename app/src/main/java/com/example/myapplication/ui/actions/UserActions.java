@@ -4,11 +4,9 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.example.myapplication.App;
-import com.example.myapplication.UserManager.UserManager;
-import com.example.myapplication.bdd.ApiController;
+import com.example.myapplication.db.ApiController;
 import com.example.myapplication.model.Event;
 import com.example.myapplication.model.User;
-import com.example.myapplication.ui.activities.TicketBuyActivity;
 
 public class UserActions {
     public static void buyTicket(Event event, UserCallback callback) {

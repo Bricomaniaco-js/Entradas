@@ -36,6 +36,11 @@ public class EventDetailedActivity extends AppCompatActivity {
     Runnable runnable;
     int currentIndex = 0;
 
+    /**
+     * Called when the activity is first created.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down then this Bundle contains the data it most recently supplied in onSaveInstanceState(Bundle). Otherwise it is null.
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +85,7 @@ public class EventDetailedActivity extends AppCompatActivity {
         carousel.setAdapter(new ImageCarouselAdapter(event));
 
         handler = new Handler();
+        //TODO: Images get downloaded every time the carousel updates. they sould get cached.
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -89,8 +95,6 @@ public class EventDetailedActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable, 3000);
-        //todo: ae vuelven a descargar las imagenes cada vez que se cambia de imagen.
-        //TODO: el carrusel no funciona, carga las imagenes pero no funcionan las transiciones.
         fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(
             new View.OnClickListener() {
@@ -102,6 +106,9 @@ public class EventDetailedActivity extends AppCompatActivity {
         );
 
     }
+    /**
+     * Called when the activity is destroyed.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

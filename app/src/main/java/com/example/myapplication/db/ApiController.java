@@ -1,29 +1,38 @@
-package com.example.myapplication.bdd;
+package com.example.myapplication.db;
 
-import android.os.Handler;
-
-import com.example.myapplication.UserManager.UserManager;
 import com.example.myapplication.dtos.EventDTO;
 import com.example.myapplication.dtos.TicketDTO;
 import com.example.myapplication.model.Event;
 import com.example.myapplication.model.Ticket;
 import com.example.myapplication.model.User;
 import com.example.myapplication.dtos.UserDTO;
-import com.example.myapplication.wrappers.UserWrapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import retrofit2.*;
 
-public class ApiController{
+/**
+ * Controller class to handle API interactions.
+ */
+public class ApiController {
 
     private ApiServiceManager apiServiceManager;
 
+    /**
+     * Constructs a new ApiController and initializes the ApiServiceManager.
+     */
     public ApiController() {
         apiServiceManager = new ApiServiceManager();
     }
 
+    /**
+     * Retrieves a user by username and password.
+     *
+     * @param username the username
+     * @param password the password
+     * @param callback the callback to handle the response
+     */
     public void getUser(String username, String password, final UserCallback callback) {
         apiServiceManager.getUser(username, password, new Callback<UserDTO>() {
             @Override
@@ -43,6 +52,12 @@ public class ApiController{
             }
         });
     }
+
+    /**
+     * Retrieves a list of events.
+     *
+     * @param callback the callback to handle the response
+     */
     public void getEvents(final EventsCallback callback) {
         apiServiceManager.getEvents(new Callback<List<EventDTO>>() {
             @Override
@@ -65,6 +80,13 @@ public class ApiController{
         });
     }
 
+    /**
+     * Buys a ticket for a user for a specific event.
+     *
+     * @param user the user
+     * @param event the event
+     * @param callback the callback to handle the response
+     */
     public void buyTicket(User user, Event event, final UserCallback callback) {
         apiServiceManager.buyTicket(user, event, new Callback<UserDTO>() {
             @Override
@@ -74,7 +96,7 @@ public class ApiController{
                     if (userDTO == null) {
                         callback.onFailure(new Exception("Failed to buy ticket"));
                         return;
-                    }else {
+                    } else {
                         System.out.println("User with new ticket: " + response.body());
                         callback.onSuccess(userDTO.toUser());
                     }
@@ -90,9 +112,16 @@ public class ApiController{
         });
     }
 
+    /**
+     * Validates a ticket by an admin.
+     *
+     * @param user the user
+     * @param qrContent the QR code content
+     * @param ticketCallback the callback to handle the response
+     */
     public void validateTicket(User user, String qrContent, ApiController.TicketCallback ticketCallback) {
         apiServiceManager.adminValidateTicket(user, qrContent, new Callback<TicketDTO>() {
-                        @Override
+            @Override
             public void onResponse(Call<TicketDTO> call, Response<TicketDTO> response) {
                 if (response.isSuccessful()) {
                     Ticket ticket = response.body().toTicket();
@@ -109,6 +138,12 @@ public class ApiController{
         });
     }
 
+    /**
+     * Retrieves an event by its ID.
+     *
+     * @param eventId the event ID
+     * @param callback the callback to handle the response
+     */
     public void getEvent(String eventId, final EventCallback callback) {
         apiServiceManager.getEvent(eventId, new Callback<EventDTO>() {
             @Override
@@ -129,27 +164,35 @@ public class ApiController{
         });
     }
 
+    /**
+     * Callback interface for event responses.
+     */
     public interface EventCallback {
         void onSuccess(Event event);
         void onFailure(Throwable t);
     }
+
+    /**
+     * Callback interface for ticket responses.
+     */
     public interface TicketCallback {
-        void onSuccess(Ticket Ticket);
+        void onSuccess(Ticket ticket);
         void onFailure(Throwable t);
     }
 
+    /**
+     * Callback interface for user responses.
+     */
     public interface UserCallback {
         void onSuccess(User user);
         void onFailure(Throwable t);
     }
 
+    /**
+     * Callback interface for events list responses.
+     */
     public interface EventsCallback {
-
         void onSuccess(List<Event> events);
-
         void onFailure(Throwable t);
     }
-
-
-
 }

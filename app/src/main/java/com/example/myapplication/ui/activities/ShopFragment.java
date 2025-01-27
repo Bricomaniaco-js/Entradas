@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.App;
 import com.example.myapplication.R;
-import com.example.myapplication.bdd.ApiController;
+import com.example.myapplication.db.ApiController;
 import com.example.myapplication.model.Event;
 import com.example.myapplication.ui.EventsAdapter;
 

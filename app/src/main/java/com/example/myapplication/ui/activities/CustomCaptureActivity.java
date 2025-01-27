@@ -4,7 +4,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
-
+/**
+ * Custom Capture Activity to force portrait orientation
+ */
 public class CustomCaptureActivity extends CaptureActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

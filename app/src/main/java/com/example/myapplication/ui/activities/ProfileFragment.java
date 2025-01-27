@@ -1,13 +1,9 @@
 package com.example.myapplication.ui.activities;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.App;
 import com.example.myapplication.R;
-import com.example.myapplication.bdd.ApiController;
+import com.example.myapplication.db.ApiController;
 import com.example.myapplication.model.Event;
 import com.example.myapplication.model.Ticket;
 import com.example.myapplication.model.User;

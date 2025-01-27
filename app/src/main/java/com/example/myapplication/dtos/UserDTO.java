@@ -1,37 +1,44 @@
 package com.example.myapplication.dtos;
 
 import com.example.myapplication.model.User;
-
 import org.bson.types.ObjectId;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object for User.
+ */
 public record UserDTO(
         String id,
         String username,
         String password,
-        Boolean isAdmin,
+        List<TicketDTO> tickets,
         List<EventDTO> events,
-        List<TicketDTO> tickets
-
+        boolean isAdmin
 ) {
-
-    public UserDTO(User u){
+    /**
+     * Constructs a new UserDTO from a User.
+     *
+     * @param u the User
+     */
+    public UserDTO(User u) {
         this(
                 u.getId() == null ? new ObjectId().toHexString() : u.getId().toHexString(),
                 u.getUsername(),
                 u.getPassword(),
-                u.isAdmin,
+                u.getTickets().stream().map(TicketDTO::new).toList(),
                 u.getEvents().stream().map(EventDTO::new).toList(),
-                u.getTickets().stream().map(TicketDTO::new).toList()
+                u.isAdmin()
         );
     }
 
-
+    /**
+     * Converts this UserDTO to a User.
+     *
+     * @return the User
+     */
     public User toUser() {
         ObjectId _id = id == null ? new ObjectId() : new ObjectId(id);
-        return new User(_id, username, password, isAdmin,
-                tickets.stream().map(TicketDTO::toTicket).toList(),
-                events.stream().map(EventDTO::toEvent).toList());
+        return new User(_id, username, password, tickets.stream().map(TicketDTO::toTicket).toList(), events.stream().map(EventDTO::toEvent).toList(), isAdmin);
     }
 }

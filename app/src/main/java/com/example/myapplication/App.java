@@ -5,12 +5,9 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.myapplication.UserManager.UserManager;
-import com.example.myapplication.bdd.ApiController;
-import com.example.myapplication.bdd.MongoController;
-import com.example.myapplication.bdd.MongoDBConnection;
+import com.example.myapplication.db.ApiController;
 import com.example.myapplication.model.User;
 import com.example.myapplication.ui.activities.LoginActivity;
-import com.mongodb.client.MongoDatabase;
 
 public class App extends Application {
     private static App instance;
@@ -32,18 +29,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-/*
-        //String connectionString = "mongodb://localhost:27017"; // Cambia esto con tu URL de conexión
-        String connectionString = "mongodb://192.168.1.39:27017";
-        String databaseName = "AppEntradas"; // Cambia esto con el nombre de tu base de datos
-
-
-
-        MongoDBConnection mongoDBConnection = new MongoDBConnection(connectionString, databaseName);
-        MongoDatabase db = mongoDBConnection.getDatabase();
-        System.out.println("Conexión a la base de datos establecida: " + db.getName());
-        controller = new MongoController(db);
-*/
 
         controller = new ApiController();
         instance = this;

@@ -3,18 +3,70 @@ package com.example.myapplication.model;
 import org.bson.types.ObjectId;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents an event.
+ */
 public class Event implements Serializable {
+    /**
+     * The unique identifier for the event.
+     */
     ObjectId id;
+
+    /**
+     * The name of the event.
+     */
     String name;
+
+    /**
+     * A description of the event.
+     */
     String description;
+
+    /**
+     * The list of tickets available for the event.
+     */
     List<Ticket> tickets;
+
+    /**
+     * The list of images associated with the event.
+     */
     List<String> images;
+
+    /**
+     * The capacity of the event.
+     */
     int capacity;
+
+    /**
+     * The price of the tickets for the event.
+     */
     float price;
 
+    /**
+     * The location where the event will be held.
+     */
+    String location;
+
+    /**
+     * The date of the event. In format "DD/MM/YYYY HH:MM"
+     */
+    String date;
+
+    /**
+     * Constructs a new Event.
+     *
+     * @param id the event ID
+     * @param name the event name
+     * @param description the event description
+     * @param tickets the list of tickets for the event
+     * @param images the list of images for the event
+     * @param capacity the capacity of the event
+     * @param price the price of the event
+     * @param location the location of the event
+     * @param date the date of the event
+     */
     public Event(ObjectId id, String name, String description, List<Ticket> tickets, List<String> images, int capacity, float price, String location, String date) {
         this.id = id;
         this.name = name;
@@ -25,6 +77,12 @@ public class Event implements Serializable {
         this.price = price;
         this.location = location;
         this.date = date;
+    }
+    /**
+     * Default constructor for Event.
+     */
+    public Event(){
+
     }
 
     public float getPrice() {
@@ -51,42 +109,12 @@ public class Event implements Serializable {
         this.date = date;
     }
 
-    String location;
-    String date;
-
-    public Event(ObjectId id, String name, String description, List<Ticket> tickets) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.tickets = tickets;
-    }
-
-    public Event(ObjectId id, String name, String description, List<Ticket> tickets, List<String> images, int capacity) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.tickets = tickets;
-        this.images = images;
-        this.capacity = capacity;
-    }
-
     public int getCapacity() {
         return capacity;
     }
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public Event(ObjectId id, String name, String description, List<Ticket> tickets, List<String> images) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.tickets = tickets;
-        this.images = images;
-    }
-    public Event(){
-
     }
 
     public List<String> getImages() {

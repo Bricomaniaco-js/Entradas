@@ -11,12 +11,23 @@ import com.example.myapplication.R;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Fetches an image from a URL and sets it to an ImageView.
+ */
 public class FetchImage extends Thread {
-    Handler handler;
-    String url;
-    Bitmap bmp;
-    ImageView image;
-    public FetchImage(String url, ImageView image, Handler handler){
+    private Handler handler;
+    private String url;
+    private Bitmap bmp;
+    private ImageView image;
+
+    /**
+     * Constructs a new FetchImage thread.
+     *
+     * @param url the URL of the image to fetch
+     * @param image the ImageView to set the fetched image
+     * @param handler the handler to post the result to the main thread
+     */
+    public FetchImage(String url, ImageView image, Handler handler) {
         this.image = image;
         this.url = url;
         this.handler = handler;
@@ -30,7 +41,7 @@ public class FetchImage extends Thread {
         } catch (IOException e) {
             Log.e("EventDetailedActivity", "Invalid URL: " + e.getMessage());
             Log.e("EventDetailedActivity", url);
-            bmp = BitmapFactory.decodeResource(image.getResources(), R.drawable.event_image_default);
+            bmp = BitmapFactory.decodeResource(image.getResources(), R.drawable.not_found);
         }
         handler.post(new Runnable() {
             @Override
@@ -39,6 +50,4 @@ public class FetchImage extends Thread {
             }
         });
     }
-
-
 }
